@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'NDDeviceAPI', :exclusive => true do
+  pod "NDDeviceAPI", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "NDDeviceAPI", :path => "../"
+
+  
+end
