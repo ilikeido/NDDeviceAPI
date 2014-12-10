@@ -7,11 +7,62 @@
 //
 
 #import "ndAppDelegate.h"
+#import <NDUserAPI.h>
+#import <NDAPIManager.h>
+#import <CommonCrypto/CommonDigest.h>
+#import "LK_NSDictionary2Object.h"
+#import <AFNetworking.h>
+#import <objc/runtime.h>
+#import <objc/message.h>
+
+
+#define APP_KEY @"c2674528e7fab0e856d9b4a563168f19"
+#define SECRET_KEY @"02a2025b903e585efff6b2fe73b15675"
+
+@interface NSString (md5)
+-(NSString *) md5HexDigest;
+@end
+
+@implementation NSString (md5)
+
+-(NSString *) md5HexDigest
+
+{
+    
+    const char *original_str = [self UTF8String];
+    
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    
+    CC_MD5(original_str, strlen(original_str), result);
+    
+    NSMutableString *hash = [NSMutableString string];
+    
+    for (int i = 0; i < 16; i++)
+        
+        [hash appendFormat:@"%02X", result[i]];
+    
+    return [hash lowercaseString];
+    
+}
+
+@end
+
 
 @implementation ndAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [NDAPIManager startWithAppKey:APP_KEY
+                        secretKey:SECRET_KEY];
+    NDLoginParams *params = [[NDLoginParams alloc]init];
+    params.user_name = @"ilikeido";
+    params.password = [@"123456" md5HexDigest];
+    [NDUserAPI loginWithParams:params completionBlockWithSuccess:^(NDLoginResult *result) {
+        
+    } Fail:^(int code, NSString *failDescript) {
+        
+    }];
+    
     // Override point for customization after application launch.
     return YES;
 }

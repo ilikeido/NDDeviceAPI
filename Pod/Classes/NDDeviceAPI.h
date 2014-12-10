@@ -10,6 +10,4 @@
 
 @interface NDDeviceAPI : NSObject
 
-+(NSString *)API_VISION;
-
 @end

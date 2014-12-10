@@ -18,8 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *apivision = [NDDeviceAPI API_VISION];
-    NSLog(@"%@",apivision);
+//    NSLog(@"%@",apivision);
     // Do any additional setup after loading the view, typically from a nib.
 }
 

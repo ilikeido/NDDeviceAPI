@@ -7,13 +7,11 @@
 //
 
 #import "NDDeviceAPI.h"
-#define VISION @"1.0"
+#import "NDConfig.h"
 
 
 @implementation NDDeviceAPI
 
-+(NSString *)API_VISION{
-    return VISION;
-}
+
 
 @end
